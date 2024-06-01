@@ -1,0 +1,124 @@
+[gd_scene load_steps=8 format=3 uid="uid://cl13bw0cnoxvh"]
+
+[ext_resource type="Texture2D" uid="uid://dd7sxhpq5xa0j" path="res://assets/pizza/slice1.png" id="1_dgejv"]
+[ext_resource type="Texture2D" uid="uid://bpn0844fvxut8" path="res://assets/particles/sauce.png" id="2_bawuq"]
+[ext_resource type="Script" path="res://scenes/pizza_slice/pizza_slice.gd" id="2_w7mhu"]
+
+[sub_resource type="Animation" id="Animation_gdfjt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:offset:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_gok4h"]
+resource_name = "hit_person"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.226893]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:offset:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.2, 0.7)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w8px6"]
+_data = {
+"RESET": SubResource("Animation_gdfjt"),
+"hit_person": SubResource("Animation_gok4h")
+}
+
+[sub_resource type="Gradient" id="Gradient_81qfd"]
+offsets = PackedFloat32Array(0.586667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Pizza" type="Node2D"]
+script = ExtResource("2_w7mhu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Image")
+libraries = {
+"": SubResource("AnimationLibrary_w8px6")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+scale = Vector2(0.4, 0.4)
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.73
+texture = ExtResource("2_bawuq")
+emission_shape = 2
+emission_sphere_radius = 80.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 300)
+initial_velocity_min = 228.57
+initial_velocity_max = 228.57
+scale_amount_min = 0.1
+scale_amount_max = 0.4
+color = Color(1, 0.164706, 0.372549, 0.8)
+color_ramp = SubResource("Gradient_81qfd")
+
+[node name="Image" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_dgejv")

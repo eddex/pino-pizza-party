@@ -1,0 +1,325 @@
+[gd_scene load_steps=26 format=3 uid="uid://dku4ue5vthwnr"]
+
+[ext_resource type="Script" path="res://scenes/test_level_1/level.gd" id="1_gjx5m"]
+[ext_resource type="Texture2D" uid="uid://bx3droojhdwc" path="res://assets/backgrounds/street-7550171_1280_2x_back.jpg" id="2_q6c5a"]
+[ext_resource type="PackedScene" uid="uid://lwcodmjsmwrf" path="res://scenes/person_walking/person_walking.tscn" id="2_tomt8"]
+[ext_resource type="Script" path="res://scenes/test_level_1/PeopleWalking.gd" id="2_ytvrx"]
+[ext_resource type="Texture2D" uid="uid://4cildxcfjafs" path="res://assets/backgrounds/street-7550171_1280_2x_front.png" id="3_rgyaj"]
+[ext_resource type="Texture2D" uid="uid://cxx3r2runjgj1" path="res://assets/people/man1.png" id="4_nlk3m"]
+[ext_resource type="Texture2D" uid="uid://cla485ubq014d" path="res://assets/people/woman_running.png" id="5_opr6r"]
+[ext_resource type="Texture2D" uid="uid://cdk0k7s1lujxl" path="res://assets/people/gril1.png" id="6_d6nd1"]
+[ext_resource type="Script" path="res://scenes/test_level_1/Camera2D.gd" id="6_w2222"]
+[ext_resource type="Texture2D" uid="uid://1p0gkso6g5fy" path="res://assets/people/girl2.png" id="6_y1761"]
+[ext_resource type="Texture2D" uid="uid://bvexy11l6gw36" path="res://assets/people/man2.png" id="7_0vs2f"]
+[ext_resource type="Theme" uid="uid://djoeckuwslvak" path="res://ressources/ui_theme.tres" id="7_2ush3"]
+[ext_resource type="Script" path="res://scenes/test_level_1/CanvasLayer.gd" id="7_cp5tp"]
+[ext_resource type="Texture2D" uid="uid://bh06erperqf55" path="res://assets/people/man4.png" id="11_gq2ix"]
+[ext_resource type="AudioStream" uid="uid://cx8d7eoonu7qt" path="res://assets/sfx/flyswatter.wav" id="11_m5prt"]
+[ext_resource type="Texture2D" uid="uid://htwhalvgxlli" path="res://assets/people/woodman.png" id="12_48nxc"]
+[ext_resource type="Script" path="res://scenes/test_level_1/people_popping_up.gd" id="12_xl24e"]
+[ext_resource type="Texture2D" uid="uid://dky7hsatahvvm" path="res://assets/people/girl3.png" id="13_8sdxv"]
+[ext_resource type="Texture2D" uid="uid://6ue1e6qmo328" path="res://assets/people/woman4.png" id="15_fi843"]
+[ext_resource type="Texture2D" uid="uid://csk2ygke2u4jh" path="res://assets/people/woman3.png" id="16_kyuk1"]
+[ext_resource type="Texture2D" uid="uid://2ex0wd5pbnc1" path="res://assets/people/man3.png" id="19_e6jbd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcfhi"]
+size = Vector2(101, 669)
+
+[sub_resource type="Animation" id="Animation_hqwt7"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelRight:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1104, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LabelLeft:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_3my8a"]
+resource_name = "wiggle"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LabelRight:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1104, -0.25, 0, 0.25, 0, 1054, -0.25, 0, 0.25, 0, 1104, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LabelLeft:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 50, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1dofc"]
+_data = {
+"RESET": SubResource("Animation_hqwt7"),
+"wiggle": SubResource("Animation_3my8a")
+}
+
+[node name="TestLevel1" type="Node2D"]
+script = ExtResource("1_gjx5m")
+
+[node name="Street-755017112802xBack" type="Sprite2D" parent="."]
+position = Vector2(1267, 412.5)
+texture = ExtResource("2_q6c5a")
+
+[node name="Man3" parent="." instance=ExtResource("2_tomt8")]
+position = Vector2(614, 189)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_0vs2f")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Man3"]
+polygon = PackedVector2Array(-19.9999, -587.5, 98.7501, -406.25, 165, -365, 180, -273.333, -203.333, -186.667, -186.25, -338.75, -131.25, -385, -91.2499, -452.5, -101.25, -547.5)
+metadata/_edit_lock_ = true
+
+[node name="Street-755017112802xFront2" type="Sprite2D" parent="."]
+position = Vector2(1267, 412.5)
+texture = ExtResource("3_rgyaj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(800, 0)
+anchor_mode = 0
+limit_left = 0
+limit_top = 0
+limit_right = 2542
+limit_bottom = 648
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("6_w2222")
+
+[node name="MoveLeftArea" type="Area2D" parent="Camera2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/MoveLeftArea"]
+position = Vector2(40.5, 324.5)
+shape = SubResource("RectangleShape2D_kcfhi")
+
+[node name="MoveRightArea" type="Area2D" parent="Camera2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/MoveRightArea"]
+position = Vector2(1107, 325)
+shape = SubResource("RectangleShape2D_kcfhi")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+script = ExtResource("7_cp5tp")
+
+[node name="LabelRight" type="Label" parent="Camera2D/CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = 949.0
+offset_bottom = 995.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("7_2ush3")
+text = ">>"
+
+[node name="LabelLeft" type="Label" parent="Camera2D/CanvasLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = 949.0
+offset_right = 48.0
+offset_bottom = 995.0
+grow_vertical = 2
+theme = ExtResource("7_2ush3")
+text = "<<"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_1dofc")
+}
+
+[node name="PeopleWalking" type="Node2D" parent="."]
+script = ExtResource("2_ytvrx")
+
+[node name="SpawnPointL" type="Marker2D" parent="PeopleWalking"]
+position = Vector2(-297, 585)
+
+[node name="SpawnPointR" type="Marker2D" parent="PeopleWalking"]
+position = Vector2(2783, 598)
+
+[node name="Girl1" parent="PeopleWalking" instance=ExtResource("2_tomt8")]
+position = Vector2(175, 256)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_d6nd1")
+speed = 120
+direction_left_to_right = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PeopleWalking/Girl1"]
+polygon = PackedVector2Array(153.333, 566.667, 130, 596.667, 10, 530, 16.6667, 473.333, 66.6667, 256.667, 13.3334, 110, -10, 253.333, -20, 493.333, 50, 590, -46.6666, 590, -110, 570, -86.6666, 476.667, -93.3333, 300, -73.3333, 220, -140, 180, -153.333, 113.333, -136.667, -30, -166.667, -166.667, -136.667, -383.333, -46.6666, -583.333, 46.6667, -583.333, 96.6667, -400, 86.6667, -170, 166.667, 16.6667, 133.333, 90, 153.333, 243.333, 73.3334, 480)
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PeopleWalking/Girl1"]
+stream = ExtResource("11_m5prt")
+
+[node name="Man4" parent="PeopleWalking" instance=ExtResource("2_tomt8")]
+position = Vector2(1837, 257)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("11_gq2ix")
+flip_texture = true
+direction_left_to_right = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PeopleWalking/Man4"]
+polygon = PackedVector2Array(-53.3333, -530, 20, -580, 83.3334, -486.667, 63.3334, -396.667, 136.667, -346.667, 160, -170, 153.333, 36.6666, 120, 66.6666, 176.667, 456.667, 233.333, 530, 136.667, 563.333, 120, 480, 76.6667, 376.667, -10, 136.667, -56.6666, 296.667, -66.6666, 456.667, 0, 553.333, -156.667, 563.333, -120, 490, -153.333, 323.333, -136.667, 223.333, -143.333, 43.3333, -223.333, -163.333, -166.667, -376.667, -43.3333, -430)
+metadata/_edit_lock_ = true
+
+[node name="Man1" parent="PeopleWalking" instance=ExtResource("2_tomt8")]
+position = Vector2(1187, 307)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_nlk3m")
+speed = 150
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PeopleWalking/Man1"]
+scale = Vector2(1.7, 1.7)
+polygon = PackedVector2Array(-107, 199, -70.9999, 186, -57.9999, 41.9999, -41.9999, 2, -59.9999, -21.9999, -35.9999, -137, -56.9999, -142, -92.9998, -177, -54.9999, -223, -23.9999, -200, -14.9999, -173, 33.9999, -166, 37.9999, -123, 30.9999, -81.9998, 37.9999, -30.9999, 35.9999, 7, 19.9999, 28.9999, 28.9999, 91.9998, 57.9999, 116, 118, 177, 105, 208, 69.9999, 221, 81.9998, 191, 58.9999, 147, 1, 110, -13.9999, 67.9999, -28.9999, 136, -39.9999, 193, -44.9999, 215, -83.9998, 216)
+metadata/_edit_lock_ = true
+
+[node name="Woodman" parent="PeopleWalking" instance=ExtResource("2_tomt8")]
+position = Vector2(2149, 368)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_48nxc")
+speed = 150
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PeopleWalking/Woodman"]
+scale = Vector2(1.7, 1.7)
+polygon = PackedVector2Array(-60.7842, 267.647, -66.6666, 245.098, -57.843, 91.1765, 8.82349, 74.5098, 38.2354, 186.274, 97.0588, 303.922, 53.9216, 316.667, 145.098, 343.137, 68.6274, 164.706, 80.3923, 0.980377, 74.5098, -55.8824, 77.4509, -183.333, 41.1765, -217.647, 42.157, -321.569, -1.96069, -333.333, -28.4314, -311.765, 0, -206.863, -43.1372, -159.804, 0, -55.8824, -66.6666, -8.82355, 0, 0, -7.84302, 30.3922, -107.843, 68.6274, -104.902, 233.333, -152.941, 239.216, -73.5293, 285.294)
+
+[node name="Woodman2" parent="PeopleWalking" instance=ExtResource("2_tomt8")]
+position = Vector2(2025, 363)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_48nxc")
+flip_texture = true
+speed = 150
+direction_left_to_right = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PeopleWalking/Woodman2"]
+scale = Vector2(1.7, 1.7)
+polygon = PackedVector2Array(-73.5295, -54.4118, -76.4707, -182.353, -45.5884, -226.471, -50, -308.823, -11.7646, -336.765, 30.8823, -302.941, 1.47046, -210.294, 44.1177, -151.471, 1.47046, -48.5294, 67.647, -5.88239, -1.4707, 5.88232, -2.94116, 22.0588, 101.47, 66.1765, 101.47, 230.882, 147.059, 235.294, 132.353, 254.412, 51.4705, 288.235, 73.5293, 251.471, 54.4116, 88.2353, -19.1177, 73.5294, -38.2354, 191.176, -98.5295, 307.353, -50, 317.647, -141.177, 338.235, -135.294, 311.765, -72.0588, 170.588, -66.1765, 58.8235, -76.4707, 11.7647, -85.2942, -22.0588)
+
+[node name="Girl2" parent="PeopleWalking" instance=ExtResource("2_tomt8")]
+position = Vector2(723, 324)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("6_y1761")
+speed = 180
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PeopleWalking/Girl2"]
+polygon = PackedVector2Array(-13, 551, 3, 501, -27, 439, -31, 245, 7, 173, 89, 507, 7, 553, 46, 572, 169, 565, 199, 515, 109, 57, 145, -25, 117, -123, 177, -211, 151, -449, 131, -461, 65, -580, -24, -534, -20, -421, 21, -408, -37, -336, -137, -368, -86, -276, -103, -217, -39, -138, -35, 17, -139, 208, -100, 438, -128, 510, -204, 562, -102, 579)
+metadata/_edit_lock_ = true
+
+[node name="Woman4" parent="PeopleWalking" instance=ExtResource("2_tomt8")]
+position = Vector2(529, 343)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("15_fi843")
+flip_texture = true
+speed = 180
+direction_left_to_right = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PeopleWalking/Woman4"]
+polygon = PackedVector2Array(-60, -533.333, 15.5555, -573.333, 86.6666, -528.889, 97.7777, -375.556, 155.556, -166.667, 82.2222, -88.889, 95.5555, 48.8888, 80, 200, 77.7777, 468.889, 137.778, 560, 31.1111, 577.778, 0, 193.333, -20, 17.7777, -62.2223, 335.555, -64.4445, 475.555, -33.3334, 546.667, -128.889, 553.333, -148.889, 526.667, -117.778, 435.555, -133.333, 306.667, -120, 184.444, -144.444, -20.0001, -117.778, -137.778, -153.333, -188.889, -144.444, -384.445, -73.3334, -431.111)
+
+[node name="WomanRunning" parent="PeopleWalking" instance=ExtResource("2_tomt8")]
+position = Vector2(1562, 439)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_opr6r")
+flip_texture = true
+speed = 200
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PeopleWalking/WomanRunning"]
+polygon = PackedVector2Array(-108.75, -201.25, -143.75, -236.25, -165, -287.5, -108.75, -321.25, -80, -301.25, -57.5, -253.75, -33.75, -241.25, -11.25, -181.25, 42.5, -130, 50, -22.4999, 45, 8.75003, 17.5, 25, 8.75002, -7.49997, 23.75, -22.4999, 15, -118.75, -30, -148.75, -38.75, -102.5, 10, -16.2499, 12.5, 28.75, 46.25, 98.75, 180, 101.25, 212.5, 75, 251.25, 150, 243.75, 181.25, 177.5, 132.5, 11.25, 145, -51.25, 42.5, -126.25, 115, -161.25, 316.25, -257.5, 270, -190, 238.75, -171.25, 86.25, -95, -29.9999, -106.25, -108.75, -228.75, 17.5, -246.25, -2.49997, -178.75, -62.4999, -131.25, -123.75)
+metadata/_edit_lock_ = true
+
+[node name="Woman3" parent="PeopleWalking" instance=ExtResource("2_tomt8")]
+position = Vector2(285, 477)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("16_kyuk1")
+flip_texture = true
+speed = 250
+direction_left_to_right = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PeopleWalking/Woman3"]
+polygon = PackedVector2Array(198.571, -434.286, 181.429, -335.714, 145.714, -314.286, 194.286, -242.857, 181.429, -217.143, 192.857, -120, 185.714, -65.7143, 241.429, 190, 168.571, 292.857, -245.714, 250, -42.8572, 188.571, 9.99994, 94.2857, 32.8571, -58.5714, 2.85709, -225.714, 97.1428, -488.571, 184.286, -462.857)
+metadata/_edit_lock_ = true
+
+[node name="PeoplePoppingUp" type="Node2D" parent="." node_paths=PackedStringArray("people", "spawn_points")]
+script = ExtResource("12_xl24e")
+people = [NodePath("Man2"), NodePath("Girl3"), NodePath("Man3")]
+spawn_points = [NodePath("PopUpPoint1"), NodePath("PopUpPoint4"), NodePath("PopUpPoint2"), NodePath("PopUpPoint5"), NodePath("PopUpPoint3")]
+
+[node name="PopUpPoint1" type="Marker2D" parent="PeoplePoppingUp"]
+position = Vector2(163, 1205)
+
+[node name="PopUpPoint2" type="Marker2D" parent="PeoplePoppingUp"]
+position = Vector2(784, 1231)
+
+[node name="PopUpPoint3" type="Marker2D" parent="PeoplePoppingUp"]
+position = Vector2(1234, 1225)
+
+[node name="PopUpPoint4" type="Marker2D" parent="PeoplePoppingUp"]
+position = Vector2(1730, 1236)
+
+[node name="PopUpPoint5" type="Marker2D" parent="PeoplePoppingUp"]
+position = Vector2(2370, 1222)
+
+[node name="Man2" parent="PeoplePoppingUp" instance=ExtResource("2_tomt8")]
+position = Vector2(405, 1154)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("7_0vs2f")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PeoplePoppingUp/Man2"]
+polygon = PackedVector2Array(-19.9999, -587.5, 98.7501, -406.25, 165, -365, 235, 8.75006, 218.75, 95.0001, 182.5, 130, 197.5, 388.75, -196.25, 406.25, -192.5, 57.5001, -225, 47.5001, -186.25, -338.75, -131.25, -385, -91.2499, -452.5, -101.25, -547.5)
+metadata/_edit_lock_ = true
+
+[node name="Man3" parent="PeoplePoppingUp" instance=ExtResource("2_tomt8")]
+position = Vector2(1225, 1117)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("19_e6jbd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PeoplePoppingUp/Man3"]
+polygon = PackedVector2Array(22.5, -542.5, 65, -512.5, 72.5, -450, 117.5, -417.5, 163.75, -335, 193.75, -198.75, 173.75, -155, 147.5, -137.5, 158.75, -3.75012, 111.25, 22.4999, 98.75, 292.5, -72.5, 297.5, -127.5, -11.2501, -176.25, -32.5001, -138.75, -181.25, -193.75, -198.75, -193.75, -252.5, -43.75, -432.5, -28.75, -520)
+
+[node name="Girl3" parent="PeoplePoppingUp" instance=ExtResource("2_tomt8")]
+position = Vector2(801, 1180)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("13_8sdxv")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PeoplePoppingUp/Girl3"]
+polygon = PackedVector2Array(-144, -66, -173, -214, -126, -385, -59, -614, 37, -608, 84, -410, 126, -378, 167, -276, 154, 130, 114, 96, 93, 215, 95, 334, 73, 500, 112, 604, 37, 604, 29, 543, 12, 576, -56, 568, -5, 472, -56, 302, -50, 217)
+metadata/_edit_lock_ = true
+
+[connection signal="mouse_entered" from="Camera2D/MoveLeftArea" to="Camera2D" method="_on_move_left_area_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/MoveLeftArea" to="Camera2D" method="_on_move_left_area_mouse_exited"]
+[connection signal="mouse_entered" from="Camera2D/MoveRightArea" to="Camera2D" method="_on_move_right_area_mouse_entered"]
+[connection signal="mouse_exited" from="Camera2D/MoveRightArea" to="Camera2D" method="_on_move_right_area_mouse_exited"]

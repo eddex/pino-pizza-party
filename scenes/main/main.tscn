@@ -1,0 +1,384 @@
+[gd_scene load_steps=13 format=3 uid="uid://bvyp7w7mpay3n"]
+
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_6c1ah"]
+[ext_resource type="AudioStream" uid="uid://cty156njtnlww" path="res://assets/music/promenade-in-italy-electro-swing-old-fashioned-retro-160014.mp3" id="1_x40v6"]
+[ext_resource type="Theme" uid="uid://djoeckuwslvak" path="res://ressources/ui_theme.tres" id="2_40ied"]
+[ext_resource type="Script" path="res://scenes/main/settings.gd" id="3_q2b5k"]
+[ext_resource type="StyleBox" uid="uid://nhw2masesydw" path="res://ressources/panel_blue.tres" id="4_eojma"]
+[ext_resource type="StyleBox" uid="uid://dc8odc38nfoli" path="res://ressources/panel_green.tres" id="4_pqghx"]
+[ext_resource type="Script" path="res://scenes/main/hud.gd" id="5_vq2dp"]
+[ext_resource type="Texture2D" uid="uid://duuwisqa52l45" path="res://assets/ui/pino.png" id="5_y37tc"]
+[ext_resource type="Script" path="res://scenes/main/pino.gd" id="6_rrfjj"]
+
+[sub_resource type="Animation" id="Animation_2kkbw"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.726033, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.47344, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_prrg5"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.706, -0.25, 0, 0.25, 0, 0.726033, -0.25, 0, 0.25, 0, 0.706, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.518, -0.25, 0, 0.25, 0, 0.47344, -0.25, 0, 0.25, 0, 0.518, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_83woc"]
+_data = {
+"RESET": SubResource("Animation_2kkbw"),
+"idle": SubResource("Animation_prrg5")
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_6c1ah")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_x40v6")
+autoplay = true
+bus = &"Music"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Menu" type="Panel" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_40ied")
+theme_override_styles/panel = ExtResource("4_pqghx")
+
+[node name="TitleLabel" type="RichTextLabel" parent="UI/Menu"]
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -477.0
+offset_top = 100.0
+offset_right = 477.0
+offset_bottom = 187.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center][rainbow]Pino's Perfect Public Pizza Party[/rainbow][/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -54.0
+offset_right = 130.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_40ied")
+
+[node name="HighScoreLabel" type="RichTextLabel" parent="UI/Menu/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 80)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center][wave]High Score: 0[/wave][/center]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ButtonPlay" type="Button" parent="UI/Menu/VBoxContainer"]
+layout_mode = 2
+text = "PLAY"
+
+[node name="ButtonSettings" type="Button" parent="UI/Menu/VBoxContainer"]
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="Pino" type="Sprite2D" parent="UI/Menu"]
+position = Vector2(957, 482)
+scale = Vector2(0.726033, 0.47344)
+texture = ExtResource("5_y37tc")
+script = ExtResource("6_rrfjj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Menu/Pino"]
+libraries = {
+"": SubResource("AnimationLibrary_83woc")
+}
+
+[node name="MadeByLabel" type="RichTextLabel" parent="UI/Menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -205.5
+offset_top = -58.0
+offset_right = 205.5
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "a game made by eddex :)"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Settings" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_40ied")
+theme_override_styles/panel = ExtResource("4_eojma")
+script = ExtResource("3_q2b5k")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/Settings/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Settings/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/Settings/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "volume:   "
+
+[node name="VolumeHSlider" type="HSlider" parent="UI/Settings/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="UI/Settings/VBoxContainer"]
+layout_mode = 2
+text = "close"
+
+[node name="HUD" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_40ied")
+script = ExtResource("5_vq2dp")
+
+[node name="ScoreLabel" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -215.0
+offset_right = -85.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 17
+text = "Score: 0"
+
+[node name="TimerLabel" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 95.0
+offset_right = 305.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 17
+text = "Time left: 60"
+
+[node name="Timer" type="Timer" parent="UI/HUD"]
+wait_time = 30.0
+one_shot = true
+
+[node name="ReloadLabel" type="RichTextLabel" parent="UI/HUD"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -225.0
+offset_top = 128.0
+offset_right = 225.0
+offset_bottom = 168.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+bbcode_enabled = true
+text = "[wave]RIGHT CLICK TO RELOAD![/wave]"
+scroll_active = false
+
+[node name="LabelMoveL" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -23.0
+offset_right = 48.0
+offset_bottom = 23.0
+grow_vertical = 2
+text = "<<"
+
+[node name="LabelMoveR" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -23.0
+offset_bottom = 23.0
+grow_horizontal = 0
+grow_vertical = 2
+text = ">>"
+
+[node name="GameOver" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_40ied")
+
+[node name="Panel" type="Panel" parent="UI/GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("4_eojma")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOver/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NewHighScoreLabel" type="Label" parent="UI/GameOver/Panel/VBoxContainer"]
+layout_mode = 2
+text = "NEW HIGH SCORE!!!"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="UI/GameOver/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "SCORE: 0"
+horizontal_alignment = 1
+
+[node name="ButtonPlayAgain" type="Button" parent="UI/GameOver/Panel/VBoxContainer"]
+layout_mode = 2
+text = "IT WAS GREAT! PLAY AGAIN!"
+
+[node name="ButtonMainMenu" type="Button" parent="UI/GameOver/Panel/VBoxContainer"]
+layout_mode = 2
+text = "PLEASE MAKE IT STOP"
+
+[connection signal="pressed" from="UI/Menu/VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="UI/Menu/VBoxContainer/ButtonSettings" to="UI/Settings" method="_on_button_settings_pressed"]
+[connection signal="value_changed" from="UI/Settings/VBoxContainer/HBoxContainer/VolumeHSlider" to="UI/Settings" method="_on_volume_h_slider_value_changed"]
+[connection signal="pressed" from="UI/Settings/VBoxContainer/Button" to="UI/Settings" method="_on_button_pressed"]
+[connection signal="pressed" from="UI/GameOver/Panel/VBoxContainer/ButtonPlayAgain" to="." method="_on_button_play_again_pressed"]
+[connection signal="pressed" from="UI/GameOver/Panel/VBoxContainer/ButtonMainMenu" to="." method="_on_button_main_menu_pressed"]

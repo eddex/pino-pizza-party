@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=3 uid="uid://bmmw24735lgws"]
+
+[ext_resource type="Script" path="res://scenes/ammo/ammo.gd" id="1_1et20"]
+[ext_resource type="Texture2D" uid="uid://dfdk7sm8b7b5o" path="res://assets/pizza/pizza_1.png" id="2_dnid8"]
+[ext_resource type="Texture2D" uid="uid://crskmc5ycf0w7" path="res://assets/pizza/pizza_2.png" id="3_5k5gf"]
+[ext_resource type="Texture2D" uid="uid://ji5qi6huk78r" path="res://assets/pizza/pizza_3.png" id="4_lmvke"]
+[ext_resource type="Texture2D" uid="uid://bf6axwevkuyt5" path="res://assets/pizza/pizza_4.png" id="5_63bl5"]
+[ext_resource type="Texture2D" uid="uid://bhcu8a375pkpv" path="res://assets/pizza/pizza_5.png" id="6_mnhrb"]
+[ext_resource type="Texture2D" uid="uid://4knjjic1wdmd" path="res://assets/pizza/pizza_6.png" id="7_ouqge"]
+[ext_resource type="Texture2D" uid="uid://b8r8ic01x4xsy" path="res://assets/pizza/pizza_7.png" id="8_85yjy"]
+[ext_resource type="Texture2D" uid="uid://dp5cpnqstqusx" path="res://assets/pizza/pizza_8.png" id="9_mpwms"]
+
+[node name="Ammo" type="Node2D" node_paths=PackedStringArray("ammo_sprites")]
+script = ExtResource("1_1et20")
+ammo_sprites = [NodePath("Pizza0"), NodePath("Pizza1"), NodePath("Pizza2"), NodePath("Pizza3"), NodePath("Pizza4"), NodePath("Pizza5"), NodePath("Pizza6"), NodePath("Pizza7"), NodePath("Pizza8")]
+
+[node name="Pizza0" type="Sprite2D" parent="."]
+visible = false
+
+[node name="Pizza1" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_dnid8")
+
+[node name="Pizza2" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_5k5gf")
+
+[node name="Pizza3" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_lmvke")
+
+[node name="Pizza4" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("5_63bl5")
+
+[node name="Pizza5" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("6_mnhrb")
+
+[node name="Pizza6" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("7_ouqge")
+
+[node name="Pizza7" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("8_85yjy")
+
+[node name="Pizza8" type="Sprite2D" parent="."]
+texture = ExtResource("9_mpwms")
